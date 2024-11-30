@@ -117,3 +117,57 @@
     
 })(jQuery);
 
+// Array com os caminhos das imagens
+const imagePaths = [
+    'img/galeria/gal1.jpg', 'img/galeria/gal2.jpg', 'img/galeria/gal3.jpg',
+    'img/galeria/gal4.jpg', 'img/galeria/gal5.jpg', 'img/galeria/gal6.jpg',
+    'img/galeria/gal7.jpg', 'img/galeria/gal8.jpg', 'img/galeria/gal9.jpg',
+    'img/galeria/gal10.jpg', 'img/galeria/gal11.jpg', 'img/galeria/gal12.jpg',
+    'img/galeria/gal13.jpg', 'img/galeria/gal14.jpg', 'img/galeria/gal15.jpg'
+];
+
+// Variáveis para controle da exibição
+let currentIndex = 0;
+const imagesPerPage = 9; // Quantas imagens exibir por vez
+
+// Selecionar os elementos do DOM
+const galleryContainer = document.getElementById('gallery-container');
+const loadMoreBtn = document.getElementById('load-more-btn');
+
+// Função para carregar as próximas imagens
+function loadImages() {
+    const nextIndex = currentIndex + imagesPerPage;
+    const imagesToDisplay = imagePaths.slice(currentIndex, nextIndex);
+
+    imagesToDisplay.forEach((path) => {
+        // Criar o elemento de imagem
+        const colDiv = document.createElement('div');
+        colDiv.className = 'col-lg-4 col-md-6 wow fadeInUp';
+
+        const galleryItem = `
+            <div class="gallery-item">
+                <a href="${path}" target="_blank">
+                    <img class="gallery-image" src="${path}" alt="Galeria">
+                </a>
+            </div>
+        `;
+
+        colDiv.innerHTML = galleryItem;
+        galleryContainer.appendChild(colDiv);
+    });
+
+    // Atualizar o índice atual
+    currentIndex = nextIndex;
+
+    // Esconder o botão se todas as imagens forem exibidas
+    if (currentIndex >= imagePaths.length) {
+        loadMoreBtn.style.display = 'none';
+    }
+}
+
+// Adicionar o evento de clique ao botão
+loadMoreBtn.addEventListener('click', loadImages);
+
+// Carregar as primeiras imagens ao inicializar
+loadImages();
+
