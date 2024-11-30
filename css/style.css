@@ -149,6 +149,23 @@
     }
 }
 
+@media (max-width: 768px) {
+    .hero-header {
+        height: auto; /* Ajusta a altura para não fixá-la */
+        padding: 20px 10px; /* Reduz o padding para dispositivos móveis */
+        text-align: center; /* Centraliza o texto */
+    }
+
+    #dias, #horas, #minutos, #segundos {
+        margin-right: 0; /* Remove margem lateral */
+        margin-bottom: 10px; /* Adiciona espaçamento vertical entre os elementos */
+    }
+
+    #dias h1, #horas h1, #minutos h1, #segundos h1 {
+        font-size: 1.5rem; /* Ajusta o tamanho do texto para caber na tela */
+    }
+}
+
 
 /*** Hero Header ***/
 .hero-header {
